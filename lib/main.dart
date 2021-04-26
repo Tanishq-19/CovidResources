@@ -80,14 +80,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   fetchData() async {
-    var resAll = await http
-        .get(Uri.https('vedicscripturesapi.herokuapp.com', '/getmsg/'));
-    var myData = jsonDecode(resAll.body);
+    var params = {
+      "name": "#meerut",
+    };
+
     //print(myData['slok']);
     // var reschapters = await http
     //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
     // chapters = jsonDecode(reschapters.body);
-
+    //
+    var response = await http.post(
+      "vedicscripturesapi.herokuapp.com/",
+      body: json.encode(params),
+    );
+    var myData = jsonDecode(response);
     print(myData);
     setState(() {});
   }
