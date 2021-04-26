@@ -3,42 +3,41 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:twitter_api/twitter_api.dart';
 import 'package:covidresource/key.dart';
-import 'package:tweet_ui/tweet_ui.dart';
 
 Future main() async {
-  final _twitterOauth = new twitterApi(
-      consumerKey: consumerApiKey,
-      consumerSecret: consumerApiSecret,
-      token: accessToken,
-      tokenSecret: accessTokenSecret);
+//   final _twitterOauth = new twitterApi(
+//       consumerKey: consumerApiKey,
+//       consumerSecret: consumerApiSecret,
+//       token: accessToken,
+//       tokenSecret: accessTokenSecret);
 
-// Make the request to twitter
-  Future twitterRequest = _twitterOauth.getTwitterRequest(
-    // Http Method
-    "GET",
-    // Endpoint you are trying to reach
-    "statuses/user_timeline.json",
-    // The options for the request
-    options: {
-      "user_id": "19025957",
-      "screen_name": "TTCnotices",
-      "count": "20",
-      "trim_user": "true",
-      "tweet_mode": "extended", // Used to prevent truncating tweets
-    },
-  );
+// // Make the request to twitter
+//   Future twitterRequest = _twitterOauth.getTwitterRequest(
+//     // Http Method
+//     "GET",
+//     // Endpoint you are trying to reach
+//     "statuses/user_timeline.json",
+//     // The options for the request
+//     options: {
+//       "user_id": "19025957",
+//       "screen_name": "TTCnotices",
+//       "count": "20",
+//       "trim_user": "true",
+//       "tweet_mode": "extended", // Used to prevent truncating tweets
+//     },
+//   );
 
-  // Wait for the future to finish
-  var res = await twitterRequest;
+//   // Wait for the future to finish
+//   var res = await twitterRequest;
 
-  // Print off the response
-  print(res.statusCode);
-  print(res.body);
+//   // Print off the response
+//   print(res.statusCode);
+//   print(res.body);
 
-  // Convert the string response into something more useable
-  var tweets = json.decode(res.body);
-  print(tweets);
-  // runApp(MyApp());
+//   // Convert the string response into something more useable
+//   var tweets = json.decode(res.body);
+//   print(tweets);
+  runApp(MyApp());
 }
 
 // Creating the twitterApi Object with the secret and public keys
@@ -64,5 +63,43 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
     );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  get http => null;
+
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  fetchData() async {
+    var params = {
+      "name": "#meerut",
+    };
+
+    //print(myData['slok']);
+    // var reschapters = await http
+    //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
+    // chapters = jsonDecode(reschapters.body);
+    //
+    var response = await http.post(
+      "vedicscripturesapi.herokuapp.com/",
+      body: json.encode(params),
+    );
+    var myData = jsonDecode(response);
+    print(myData);
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
