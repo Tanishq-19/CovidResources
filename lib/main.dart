@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'dart:ffi';
 
+import 'package:covidresource/avaibility.dart';
+import 'package:covidresource/requirment.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:twitter_api/twitter_api.dart';
 import 'package:covidresource/key.dart';
 
-Future main() async {
+void main() => runApp(MyApp());
 //   final _twitterOauth = new twitterApi(
 //       consumerKey: consumerApiKey,
 //       consumerSecret: consumerApiSecret,
@@ -37,8 +41,6 @@ Future main() async {
 //   // Convert the string response into something more useable
 //   var tweets = json.decode(res.body);
 //   print(tweets);
-  runApp(MyApp());
-}
 
 // Creating the twitterApi Object with the secret and public keys
 // These keys are generated from the twitter developer page
@@ -49,18 +51,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
     );
   }
@@ -72,34 +67,65 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  get http => null;
-
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  fetchData() async {
-    var params = {
-      "name": "#meerut",
-    };
-
-    //print(myData['slok']);
-    // var reschapters = await http
-    //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
-    // chapters = jsonDecode(reschapters.body);
-    //
-    var response = await http.post(
-      "vedicscripturesapi.herokuapp.com/",
-      body: json.encode(params),
-    );
-    var myData = jsonDecode(response);
-    print(myData);
-    setState(() {});
-  }
-
+  int page;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Color(0xffE8B8F4),
+        color: Color(0xffD972FF),
+        items: <Widget>[
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+        ],
+        onTap: (index) {
+          page = index;
+          print(page);
+          setState(() {});
+        },
+      ),
+      body: page == 0 ? Avaibility() : Requirement(),
+    );
   }
 }
+
+
+
+// class HomePage extends StatefulWidget {
+//   @override
+//   _HomePageState createState() => _HomePageState();
+// }
+
+// class _HomePageState extends State<HomePage> {
+//   get http => null;
+
+//   void initState() {
+//     super.initState();
+//     //fetchData();
+//   }
+
+//   fetchData() async {
+//     var params = {
+//       "name": "#meerut",
+//     };
+
+//     //print(myData['slok']);
+//     // var reschapters = await http
+//     //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
+//     // chapters = jsonDecode(reschapters.body);
+//     //
+//     var response = await http.post(
+//       "vedicscripturesapi.herokuapp.com/",
+//       body: json.encode(params),
+//     );
+//     var myData = jsonDecode(response);
+//     print(myData);
+//     setState(() {});
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
