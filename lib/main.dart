@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
     // chapters = jsonDecode(reschapters.body);
     //
     var response = await http.post(
-      "vedicscripturesapi.herokuapp.com/",
+      "https://fathomless-taiga-09466.herokuapp.com/",
       body: json.encode(params),
     );
     var myData = jsonDecode(response);
