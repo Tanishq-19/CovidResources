@@ -366,11 +366,15 @@ class _RequirementState extends State<Requirement> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      "Requirements",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Requirements",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
 
@@ -380,7 +384,7 @@ class _RequirementState extends State<Requirement> {
                         _buildFeedbackDialog();
                       },
                       child: Text(
-                        "requirement",
+                        "Tap here",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
@@ -426,8 +430,7 @@ class _RequirementState extends State<Requirement> {
                           child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: 10,
-                            //data.length,
+                            itemCount: data.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
                                 padding: const EdgeInsets.all(5.0),
