@@ -75,6 +75,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   fetchData() async {
+      var data = {
+    "city":"meerut",
+    "resources":"covid oxygen",
+    "no_of_tweets":"1"
+    };
+    final body = json.encode(data);
     // var params = {
     //   "name": "#meerut",
     // };
@@ -84,9 +90,16 @@ class _HomePageState extends State<HomePage> {
     //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
     // chapters = jsonDecode(reschapters.body);
     //
-    var response = await http.post(
-      "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
-    );
+    final String apiUrl =
+        "https://fathomless-taiga-09466.herokuapp.com/";
+
+    final response = await http.post(apiUrl,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control_Allow_Origin": "GET"
+        },
+        body: body);
+   
     var myData = jsonDecode(response);
     print(myData);
     setState(() {});
