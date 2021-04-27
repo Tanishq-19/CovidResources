@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import 'dart:ffi';
 
 import 'package:covidresource/avaibility.dart';
 import 'package:covidresource/requirment.dart';
@@ -40,12 +40,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   fetchData() async {
-    var data = {
-      "city": "meerut",
-      "resources": "covid oxygen",
-      "no_of_tweets": "1"
-    };
-
+    // var data = {
+    //   "city": "meerut",
+    //   "resources": "covid oxygen",
+    //   "no_of_tweets": "1"
+    // };
+    // final body = json.encode(data);
     // var params = {
     //   "name": "#meerut",
     // };
@@ -66,9 +66,12 @@ class _HomePageState extends State<HomePage> {
 
     // final String apiUrl = "https://fathomless-taiga-09466.herokuapp.com/";
 
-    // final uri = Uri.https('fathomless-taiga-09466.herokuapp.com', '/', data);
-    // final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
-    // final response = await https.get(uri, headers: headers);
+    // final response = await https.post(apiUrl,
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Access-Control_Allow_Origin": "GET"
+    //     },
+    //     body: body);
 
     // var myData = jsonDecode(response.body);
     print(myData[0]);
