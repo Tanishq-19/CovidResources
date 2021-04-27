@@ -33,7 +33,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var page;
-  // get http => null;
 
   void initState() {
     super.initState();
@@ -68,10 +67,10 @@ class _HomePageState extends State<HomePage> {
     final String apiUrl = "fathomless-taiga-09466.herokuapp.com";
 
     final response = await https.post(apiUrl,
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   "Access-Control_Allow_Origin": "GET"
-        // },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control_Allow_Origin": "GET"
+        },
         body: body);
 
     var myData = jsonDecode(response.body);
