@@ -10,9 +10,9 @@ class _RequirementState extends State<Requirement> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffE8B8F4),
-      appBar: AppBar(
-        title: Text("Requirement"),
-      ),
+      // appBar: AppBar(
+      //   title: Text("Requirement"),
+      // ),
     );
   }
 }

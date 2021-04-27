@@ -76,14 +76,23 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xffE8B8F4),
         color: Color(0xffD972FF),
         items: <Widget>[
-          Icon(Icons.add, size: 30),
-          Icon(Icons.list, size: 30),
+          Icon(Icons.add_moderator, size: 30),
+          Icon(Icons.enhanced_encryption, size: 30),
         ],
         onTap: (index) {
           page = index;
           print(page);
           setState(() {});
         },
+      ),
+      appBar: AppBar(
+        title: Text("India Unites Against Covid"),
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Color(0xffD972FF),
+        ),
       ),
       body: page == 0 ? Avaibility() : Requirement(),
     );
