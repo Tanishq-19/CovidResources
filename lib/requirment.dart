@@ -38,7 +38,8 @@ class _RequirementState extends State<Requirement> {
 
   fetchData(String resources) async {
     var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com", "/meerut/$resources/covid/10"));
+        "fathomless-taiga-09466.herokuapp.com",
+        "/meerut need urgent/$resources/covid/10"));
     var myData = jsonDecode(response.body);
     data = myData;
     print(jsonEncode(data).length);
@@ -363,62 +364,60 @@ class _RequirementState extends State<Requirement> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Requirements",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.account_balance,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              print("Report problem pressed");
-                              _buildFeedbackDialog();
-                            },
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                    child: DropdownSearch<String>(
-                      mode: Mode.MENU,
-                      showSelectedItem: true,
-                      items: ['delhi', 'meerut'],
-                      label: "City",
-                      hint: "City Select",
-                      // popupItemDisabled: (String s) =>
-                      //   s.startsWith('I'),
-                      onChanged: print,
-                      selectedItem: "None",
-                      popupBackgroundColor: Colors.deepOrange[400],
-                      popupBarrierColor: Colors.black26,
-                      searchBoxDecoration: InputDecoration(
-                        // contentPadding:
-                        //     EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey[300]),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey[300]),
-                        ),
-                      ),
-                      validator: (val) =>
-                          val == "None" ? "Please select the category" : null,
+                  Text(
+                    "Requirements",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
                   ),
+
+                  OutlineButton(
+                    autofocus: true,
+                    onPressed: () {
+                      _buildFeedbackDialog();
+                    },
+                    child: Text(
+                      "requirement",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                  //   child: DropdownSearch<String>(
+                  //     mode: Mode.MENU,
+                  //     showSelectedItem: true,
+                  //     items: ['delhi', 'meerut'],
+                  //     label: "City",
+                  //     hint: "City Select",
+                  //     // popupItemDisabled: (String s) =>
+                  //     //   s.startsWith('I'),
+                  //     onChanged: print,
+                  //     selectedItem: "None",
+                  //     popupBackgroundColor: Colors.deepOrange[400],
+                  //     popupBarrierColor: Colors.black26,
+                  //     searchBoxDecoration: InputDecoration(
+                  //       // contentPadding:
+                  //       //     EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.grey[300]),
+                  //       ),
+                  //       focusedBorder: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.blue),
+                  //       ),
+                  //       border: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.grey[300]),
+                  //       ),
+                  //     ),
+                  //     validator: (val) =>
+                  //         val == "None" ? "Please select the category" : null,
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SingleChildScrollView(
