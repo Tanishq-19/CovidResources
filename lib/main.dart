@@ -80,9 +80,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   fetchData() async {
-    var params = {
-      "name": "#meerut",
-    };
+    // var params = {
+    //   "name": "#meerut",
+    // };
 
     //print(myData['slok']);
     // var reschapters = await http
@@ -90,8 +90,7 @@ class _HomePageState extends State<HomePage> {
     // chapters = jsonDecode(reschapters.body);
     //
     var response = await http.post(
-      "https://fathomless-taiga-09466.herokuapp.com/",
-      body: json.encode(params),
+      "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
     );
     var myData = jsonDecode(response);
     print(myData);
