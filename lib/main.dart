@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   var data;
   void initState() {
     super.initState();
-    fetchData();
+    //fetchData();
   }
 
   fetchData() async {
