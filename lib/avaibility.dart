@@ -38,7 +38,8 @@ class _AvailabilityState extends State<Availability> {
 
   fetchData(String resources) async {
     var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com", "/meerut/$resources/covid/50"));
+        "fathomless-taiga-09466.herokuapp.com",
+        "/meerut resource/$resources/covid/50"));
     var myData = jsonDecode(response.body);
     data = myData;
     //print(jsonEncode(data).length);
