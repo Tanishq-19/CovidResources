@@ -22,10 +22,11 @@ class _AvailabilityState extends State<Availability> {
   fetchData() async {
     var response = await https.get(Uri.https(
         "fathomless-taiga-09466.herokuapp.com",
-        "/meerut/oxygen available/covid/1"));
+        "/meerut/oxygen available/covid/10"));
     var myData = jsonDecode(response.body);
-    data = jsonEncode(myData);
-    print(data);
+
+    data = myData;
+    print(jsonEncode(data).length);
     setState(() {});
   }
 
@@ -50,19 +51,20 @@ class _AvailabilityState extends State<Availability> {
                       ),
                     ),
                   ),
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SingleChildScrollView(
                       child: ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: 2,
+                        itemCount: 10,
                         //data.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: EmbeddedTweetView.fromTweet(
-                              Tweet.fromRawJson(data),
+                              Tweet.fromRawJson(jsonEncode(data[index])),
                             ),
                           );
                         },

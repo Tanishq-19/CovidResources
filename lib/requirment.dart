@@ -22,10 +22,10 @@ class _RequirementState extends State<Requirement> {
   fetchData() async {
     var response = await https.get(Uri.https(
         "fathomless-taiga-09466.herokuapp.com",
-        "/meerut/oxygen available/covid/0"));
+        "/meerut/oxygen need help/covid/10"));
     var myData = jsonDecode(response.body);
-    data = jsonEncode(myData[0]);
-    print(data);
+    data = myData;
+    print(jsonEncode(data).length);
     setState(() {});
   }
 
@@ -52,8 +52,21 @@ class _RequirementState extends State<Requirement> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: EmbeddedTweetView.fromTweet(
-                      Tweet.fromRawJson(data),
+                    child: SingleChildScrollView(
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 10,
+                        //data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: EmbeddedTweetView.fromTweet(
+                              Tweet.fromRawJson(jsonEncode(data[index])),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   )
                 ],
