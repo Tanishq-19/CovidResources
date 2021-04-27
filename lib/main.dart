@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
     //     body: body);
 
     // var myData = jsonDecode(response.body);
-    data = jsonEncode(myData);
+    data = jsonEncode(myData[0]);
     print(data);
     setState(() {});
   }
