@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
     // var response = await http.post(
     //   "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
     // );
-    var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com", "/meerut/''/covid/3"));
+    var response = await https.get(
+        Uri.https("fathomless-taiga-09466.herokuapp.com", "/delhi/''/covid/7"));
     var myData = jsonDecode(response.body);
     // print(myData[0]);
 
