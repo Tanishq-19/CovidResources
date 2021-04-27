@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:covidresource/avaibility.dart';
 import 'package:covidresource/requirment.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:twitter_api/twitter_api.dart';
-import 'package:covidresource/key.dart';
+
 import 'package:http/http.dart' as https;
 
 void main() => runApp(MyApp());
@@ -33,7 +31,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var page;
-
+  var data;
   void initState() {
     super.initState();
     fetchData();
@@ -59,8 +57,8 @@ class _HomePageState extends State<HomePage> {
     // var response = await http.post(
     //   "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
     // );
-    var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com", "/meerut/''/covid/7"));
+    var response = await https.get(
+        Uri.https("fathomless-taiga-09466.herokuapp.com", "/meerut/''/''/6"));
     var myData = jsonDecode(response.body);
     // print(myData[0]);
 
@@ -74,7 +72,8 @@ class _HomePageState extends State<HomePage> {
     //     body: body);
 
     // var myData = jsonDecode(response.body);
-    print(myData);
+    data = jsonEncode(myData);
+    print(data);
     setState(() {});
   }
 
@@ -104,7 +103,7 @@ class _HomePageState extends State<HomePage> {
           color: Color(0xffD972FF),
         ),
       ),
-      body: page == 0 ? Avaibility() : Requirement(),
+      body: page == 0 ? Avaibility(data) : Requirement(),
     );
   }
 }
