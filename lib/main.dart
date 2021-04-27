@@ -67,7 +67,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int page;
+  get http => null;
+
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  fetchData() async {
+    // var params = {
+    //   "name": "#meerut",
+    // };
+
+    //print(myData['slok']);
+    // var reschapters = await http
+    //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
+    // chapters = jsonDecode(reschapters.body);
+    //
+    var response = await http.post(
+      "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
+    );
+    var myData = jsonDecode(response);
+    print(myData);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,8 +122,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
 
 // class HomePage extends StatefulWidget {
 //   @override
