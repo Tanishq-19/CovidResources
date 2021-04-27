@@ -30,52 +30,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var page;
+  var page = 0;
   var data;
   void initState() {
     super.initState();
-    fetchData();
+    //fetchData();
   }
 
-  fetchData() async {
-    // var data = {
-    //   "city": "meerut",
-    //   "resources": "covid oxygen",
-    //   "no_of_tweets": "1"
-    // };
-    // final body = json.encode(data);
-    // var params = {
-    //   "name": "#meerut",
-    // };
-
-    //print(myData['slok']);
-    // var reschapters = await http
-    //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
-    // chapters = jsonDecode(reschapters.body);
-    //
-
-    // var response = await http.post(
-    //   "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
-    // );
-    var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com", "/meerut/''/covid/3"));
-    var myData = jsonDecode(response.body);
-    // print(myData[0]);
-
-    // final String apiUrl = "https://fathomless-taiga-09466.herokuapp.com/";
-
-    // final response = await https.post(apiUrl,
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "Access-Control_Allow_Origin": "GET"
-    //     },
-    //     body: body);
-
-    // var myData = jsonDecode(response.body);
-    data = jsonEncode(myData[0]);
-    print(data);
-    setState(() {});
-  }
+  // fetchData() async {
+  //   var response = await https.get(Uri.https(
+  //       "fathomless-taiga-09466.herokuapp.com",
+  //       "/meerut/oxygen available/covid/0"));
+  //   var myData = jsonDecode(response.body);
+  //   data = jsonEncode(myData[0]);
+  //   print(data);
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           color: Color(0xffD972FF),
         ),
       ),
-      body: page == 0 ? Avaibility(data) : Requirement(),
+      body: page == 0 ? Availability() : Requirement(),
     );
   }
 }

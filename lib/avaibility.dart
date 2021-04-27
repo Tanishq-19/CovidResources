@@ -1,47 +1,80 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as https;
 import 'package:tweet_ui/embedded_tweet_view.dart';
 import 'package:tweet_ui/models/api/tweet.dart';
-import 'package:covidresource/main.dart';
 
-class Avaibility extends StatefulWidget {
-  Avaibility(this.data);
-  var data;
+class Availability extends StatefulWidget {
   @override
-  _AvaibilityState createState() => _AvaibilityState();
+  _AvailabilityState createState() => _AvailabilityState();
 }
 
-class _AvaibilityState extends State<Avaibility> {
+class _AvailabilityState extends State<Availability> {
+  var data;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  fetchData() async {
+    var response = await https.get(Uri.https(
+        "fathomless-taiga-09466.herokuapp.com",
+        "/meerut/oxygen available/covid/1"));
+    var myData = jsonDecode(response.body);
+    data = jsonEncode(myData);
+    print(data);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffE8B8F4),
       body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                "Avaibilities",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            EmbeddedTweetView.fromTweet(
-              Tweet.fromRawJson(widget.data
-                  // {"created_at": "Mon Nov 12 13:00:38 +0000 2018", "id": 1061967001177018368, ...
+        child: data == null
+            ? CircularProgressIndicator()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      "Availability",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
-              // darkMode: true,
-            )
-          ],
-        ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SingleChildScrollView(
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 2,
+                        //data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: EmbeddedTweetView.fromTweet(
+                              Tweet.fromRawJson(data),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                  // EmbeddedTweetView.fromTweet(
+                  //   Tweet.fromRawJson(data),
+                  // ),
+                ],
+              ),
       ),
-      // appBar: AppBar(
-      //   title: Text("Avaibility"),
-      // ),
     );
   }
 }
