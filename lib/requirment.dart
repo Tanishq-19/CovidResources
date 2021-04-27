@@ -36,40 +36,42 @@ class _RequirementState extends State<Requirement> {
       body: Center(
         child: data == null
             ? CircularProgressIndicator()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      "Requirements",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
+            : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        "Requirements",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SingleChildScrollView(
-                      child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 10,
-                        //data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: EmbeddedTweetView.fromTweet(
-                              Tweet.fromRawJson(jsonEncode(data[index])),
-                            ),
-                          );
-                        },
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: 10,
+                          //data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: EmbeddedTweetView.fromTweet(
+                                Tweet.fromRawJson(jsonEncode(data[index])),
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
       ),
     );

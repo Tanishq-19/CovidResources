@@ -26,7 +26,8 @@ class _AvailabilityState extends State<Availability> {
     var myData = jsonDecode(response.body);
 
     data = myData;
-    print(jsonEncode(data).length);
+    print(data.length);
+    //print(jsonEncode(data).length);
     setState(() {});
   }
 
@@ -37,44 +38,45 @@ class _AvailabilityState extends State<Availability> {
       body: Center(
         child: data == null
             ? CircularProgressIndicator()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      "Availability",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
+            : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        "Availability",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
-                  ),
 
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SingleChildScrollView(
-                      child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 10,
-                        //data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: EmbeddedTweetView.fromTweet(
-                              Tweet.fromRawJson(jsonEncode(data[index])),
-                            ),
-                          );
-                        },
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: EmbeddedTweetView.fromTweet(
+                                Tweet.fromRawJson(jsonEncode(data[index])),
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  )
-                  // EmbeddedTweetView.fromTweet(
-                  //   Tweet.fromRawJson(data),
-                  // ),
-                ],
+                    )
+                    // EmbeddedTweetView.fromTweet(
+                    //   Tweet.fromRawJson(data),
+                    // ),
+                  ],
+                ),
               ),
       ),
     );
