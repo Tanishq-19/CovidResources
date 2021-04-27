@@ -59,18 +59,18 @@ class _HomePageState extends State<HomePage> {
     // var response = await http.post(
     //   "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
     // );
-    // var response = await https.get(Uri.https(
-    //     "fathomless-taiga-09466.herokuapp.com", "/", data));
-    // var myData = jsonDecode(response.body);
+    var response = await https
+        .get(Uri.https("fathomless-taiga-09466.herokuapp.com", "", data));
+    var myData = jsonDecode(response.body);
     // print(myData[0]);
 
     // final String apiUrl = "https://fathomless-taiga-09466.herokuapp.com/";
 
-    final uri = Uri.http('fathomless-taiga-09466.herokuapp.com', '/', data);
-    final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
-    final response = await https.get(uri, headers: headers);
+    // final uri = Uri.https('fathomless-taiga-09466.herokuapp.com', '/', data);
+    // final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
+    // final response = await https.get(uri, headers: headers);
 
-    var myData = jsonDecode(response.body);
+    // var myData = jsonDecode(response.body);
     print(myData);
     setState(() {});
   }
