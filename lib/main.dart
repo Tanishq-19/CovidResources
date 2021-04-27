@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   var data;
   void initState() {
     super.initState();
-    //fetchData();
+    fetchData();
   }
 
   fetchData() async {
@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
     // var response = await http.post(
     //   "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
     // );
-    var response = await https.get(
-        Uri.https("fathomless-taiga-09466.herokuapp.com", "/meerut/''/''/6"));
+    var response = await https.get(Uri.https(
+        "fathomless-taiga-09466.herokuapp.com", "/meerut/''/covid/3"));
     var myData = jsonDecode(response.body);
     // print(myData[0]);
 
