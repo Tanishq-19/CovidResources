@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as https;
 import 'package:tweet_ui/embedded_tweet_view.dart';
 import 'package:tweet_ui/models/api/tweet.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Availability extends StatefulWidget {
   @override
@@ -38,10 +39,12 @@ class _AvailabilityState extends State<Availability> {
 
   fetchData(String resources) async {
     var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com", "/meerut/$resources/covid/50"));
+        "fathomless-taiga-09466.herokuapp.com",
+        "/meerut available/$resources/covid/50"));
     var myData = jsonDecode(response.body);
     data = myData;
-    //print(jsonEncode(data).length);
+
+    print(data[0]['entities']['urls'][0]['expanded_url']);
     setState(() {});
   }
 
@@ -438,13 +441,18 @@ class _AvailabilityState extends State<Availability> {
                           child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: 10,
-                            //data.length,
+                            itemCount: data.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: EmbeddedTweetView.fromTweet(
-                                  Tweet.fromRawJson(jsonEncode(data[index])),
+                                child: GestureDetector(
+                                  onTap: () => _launchURL(data[index]
+                                      ['entities']['urls'][0]['expanded_url']),
+                                  child: EmbeddedTweetView.fromTweet(
+                                    Tweet.fromRawJson(
+                                      jsonEncode(data[index]),
+                                    ),
+                                  ),
                                 ),
                               );
                             },
@@ -455,5 +463,13 @@ class _AvailabilityState extends State<Availability> {
               ),
       ),
     );
+  }
+}
+
+_launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
