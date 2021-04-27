@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:tweet_ui/embedded_tweet_view.dart';
 import 'package:tweet_ui/models/api/tweet.dart';
