@@ -38,11 +38,10 @@ class _RequirementState extends State<Requirement> {
 
   fetchData(String resources) async {
     var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com",
-        "/meerut need urgent/$resources/covid/10"));
+        "fathomless-taiga-09466.herokuapp.com", "/meerut/$resources/covid/50"));
     var myData = jsonDecode(response.body);
     data = myData;
-    print(jsonEncode(data).length);
+    //print(jsonEncode(data).length);
     setState(() {});
   }
 
@@ -60,191 +59,63 @@ class _RequirementState extends State<Requirement> {
             ),
             elevation: 10,
             contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            content: Column(
-              // mainAxisSize: MainAxisSize.min,
-              //crossAxisAlignment: CrossAxisAlignment.stretch,
-              //mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    padding: EdgeInsets.all(0),
-                    splashRadius: 20,
-                    icon: Icon(
-                      Icons.arrow_back_outlined,
+            content: SingleChildScrollView(
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                //crossAxisAlignment: CrossAxisAlignment.stretch,
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      padding: EdgeInsets.all(0),
+                      splashRadius: 20,
+                      icon: Icon(
+                        Icons.arrow_back_outlined,
+                        color: Colors.grey[200],
+                        size: 20,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Text(
+                    "Select the resources and city",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
                       color: Colors.grey[200],
-                      size: 20,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
                   ),
-                ),
-                Text(
-                  "Select the resources and city",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey[200],
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                  SizedBox(
+                    height: 10,
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Serch for the requirement\nfrom the above",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 15,
+                  Text(
+                    "Search for the requirement\nfrom the above",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey[400],
+                      fontSize: 15,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          //TODO: submit feedback
-                          fetchData('Ramdesivir');
-                          Navigator.pop(context);
-                        },
-                        color: Colors.black,
-                        child: Text(
-                          "Ramdesivir",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          //TODO: submit feedback
-                          fetchData('Favipiravir');
-                          Navigator.pop(context);
-                        },
-                        color: Colors.black,
-                        child: Text(
-                          "Favipiravir",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          //TODO: submit feedback
-                          fetchData('oxygen');
-                          Navigator.pop(context);
-                        },
-                        color: Colors.black,
-                        child: Text(
-                          "oxygen",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          //TODO: submit feedback
-                          fetchData('Ventillator');
-                          Navigator.pop(context);
-                        },
-                        color: Colors.black,
-                        child: Text(
-                          "Ventillator",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          //TODO: submit feedback
-                          fetchData('plasma');
-                          Navigator.pop(context);
-                        },
-                        color: Colors.black,
-                        child: Text(
-                          "plasma",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          //TODO: submit feedback
-                          fetchData('toclizumab');
-                          Navigator.pop(context);
-                        },
-                        color: Colors.black,
-                        child: Text(
-                          "toclizumab",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Padding(
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: RaisedButton(
                           onPressed: () {
                             //TODO: submit feedback
-                            fetchData('ICU');
+                            fetchData('Ramdesivir');
                             Navigator.pop(context);
                           },
                           color: Colors.black,
                           child: Text(
-                            "ICU",
+                            "Ramdesivir",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.grey[400],
@@ -253,101 +124,231 @@ class _RequirementState extends State<Requirement> {
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          //TODO: submit feedback
-                          fetchData('beds');
-                          Navigator.pop(context);
-                        },
-                        color: Colors.black,
-                        child: Text(
-                          "beds",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 15,
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            //TODO: submit feedback
+                            fetchData('Favipiravir');
+                            Navigator.pop(context);
+                          },
+                          color: Colors.black,
+                          child: Text(
+                            "Favipiravir",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 15,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            //TODO: submit feedback
+                            fetchData('oxygen');
+                            Navigator.pop(context);
+                          },
+                          color: Colors.black,
+                          child: Text(
+                            "oxygen",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            //TODO: submit feedback
+                            fetchData('Ventillator');
+                            Navigator.pop(context);
+                          },
+                          color: Colors.black,
+                          child: Text(
+                            "Ventillator",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
 
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RaisedButton(
-                    onPressed: () {
-                      //TODO: submit feedback
-                      fetchData('Food');
-                      Navigator.pop(context);
-                    },
-                    color: Colors.black,
-                    child: Text(
-                      "Food",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 15,
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            //TODO: submit feedback
+                            fetchData('plasma');
+                            Navigator.pop(context);
+                          },
+                          color: Colors.black,
+                          child: Text(
+                            "plasma",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            //TODO: submit feedback
+                            fetchData('toclizumab');
+                            Navigator.pop(context);
+                          },
+                          color: Colors.black,
+                          child: Text(
+                            "toclizumab",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RaisedButton(
+                            onPressed: () {
+                              //TODO: submit feedback
+                              fetchData('ICU');
+                              Navigator.pop(context);
+                            },
+                            color: Colors.black,
+                            child: Text(
+                              "ICU",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.grey[400],
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            //TODO: submit feedback
+                            fetchData('beds');
+                            Navigator.pop(context);
+                          },
+                          color: Colors.black,
+                          child: Text(
+                            "beds",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                      onPressed: () {
+                        //TODO: submit feedback
+                        fetchData('Food');
+                        Navigator.pop(context);
+                      },
+                      color: Colors.black,
+                      child: Text(
+                        "Food",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey[400],
+                          fontSize: 15,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // TextField(
-                //   controller: _resourcesTEC,
-                //   style: TextStyle(
-                //     color: Colors.grey[200],
-                //     fontSize: 15,
-                //   ),
-                //   maxLines: 5,
-                //   cursorColor: Colors.amber,
-                //   autofocus: true,
-                //   keyboardType: TextInputType.multiline,
-                //   decoration: InputDecoration(
-                //     border: OutlineInputBorder(
-                //       borderSide: BorderSide.none,
-                //       borderRadius: BorderRadius.circular(10),
-                //     ),
-                //     filled: true,
-                //     fillColor: Colors.black,
-                //     hintText: "Write here",
-                //     hintStyle: TextStyle(
-                //       color: Colors.grey[400],
-                //     ),
-                //   ),
-                // ),
-                SizedBox(
-                  height: 10,
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    //TODO: submit feedback
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // TextField(
+                  //   controller: _resourcesTEC,
+                  //   style: TextStyle(
+                  //     color: Colors.grey[200],
+                  //     fontSize: 15,
+                  //   ),
+                  //   maxLines: 5,
+                  //   cursorColor: Colors.amber,
+                  //   autofocus: true,
+                  //   keyboardType: TextInputType.multiline,
+                  //   decoration: InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //       borderSide: BorderSide.none,
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //     filled: true,
+                  //     fillColor: Colors.black,
+                  //     hintText: "Write here",
+                  //     hintStyle: TextStyle(
+                  //       color: Colors.grey[400],
+                  //     ),
+                  //   ),
+                  // ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      //TODO: submit feedback
 
-                    Navigator.pop(context);
-                  },
-                  color: Colors.black,
-                  child: Icon(
-                    Icons.arrow_forward,
-                    color: Colors.grey[200],
+                      Navigator.pop(context);
+                    },
+                    color: Colors.black,
+                    child: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.grey[200],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Thank you for the submitt",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 15,
+                  SizedBox(
+                    height: 10,
                   ),
-                ),
-              ],
+                  Text(
+                    "Thank you for the submitt",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey[400],
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -360,84 +361,85 @@ class _RequirementState extends State<Requirement> {
       body: Center(
         child: data == null
             ? CircularProgressIndicator()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Requirements",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-
-                  OutlineButton(
-                    autofocus: true,
-                    onPressed: () {
-                      _buildFeedbackDialog();
-                    },
-                    child: Text(
-                      "requirement",
+            : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Requirements",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
                       ),
                     ),
-                  ),
 
-                  // Padding(
-                  //   padding:
-                  //       const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                  //   child: DropdownSearch<String>(
-                  //     mode: Mode.MENU,
-                  //     showSelectedItem: true,
-                  //     items: ['delhi', 'meerut'],
-                  //     label: "City",
-                  //     hint: "City Select",
-                  //     // popupItemDisabled: (String s) =>
-                  //     //   s.startsWith('I'),
-                  //     onChanged: print,
-                  //     selectedItem: "None",
-                  //     popupBackgroundColor: Colors.deepOrange[400],
-                  //     popupBarrierColor: Colors.black26,
-                  //     searchBoxDecoration: InputDecoration(
-                  //       // contentPadding:
-                  //       //     EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  //       enabledBorder: OutlineInputBorder(
-                  //         borderSide: BorderSide(color: Colors.grey[300]),
-                  //       ),
-                  //       focusedBorder: OutlineInputBorder(
-                  //         borderSide: BorderSide(color: Colors.blue),
-                  //       ),
-                  //       border: OutlineInputBorder(
-                  //         borderSide: BorderSide(color: Colors.grey[300]),
-                  //       ),
-                  //     ),
-                  //     validator: (val) =>
-                  //         val == "None" ? "Please select the category" : null,
-                  //   ),
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SingleChildScrollView(
-                      child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 10,
-                        //data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: EmbeddedTweetView.fromTweet(
-                              Tweet.fromRawJson(jsonEncode(data[index])),
-                            ),
-                          );
-                        },
+                    OutlineButton(
+                      autofocus: true,
+                      onPressed: () {
+                        _buildFeedbackDialog();
+                      },
+                      child: Text(
+                        "requirement",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
-                  )
-                ],
+
+                    // Padding(
+                    //   padding:
+                    //       const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                    //   child: DropdownSearch<String>(
+                    //     mode: Mode.MENU,
+                    //     showSelectedItem: true,
+                    //     items: ['delhi', 'meerut'],
+                    //     label: "City",
+                    //     hint: "City Select",
+                    //     // popupItemDisabled: (String s) =>
+                    //     //   s.startsWith('I'),
+                    //     onChanged: print,
+                    //     selectedItem: "None",
+                    //     popupBackgroundColor: Colors.deepOrange[400],
+                    //     popupBarrierColor: Colors.black26,
+                    //     searchBoxDecoration: InputDecoration(
+                    //       // contentPadding:
+                    //       //     EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.grey[300]),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.blue),
+                    //       ),
+                    //       border: OutlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.grey[300]),
+                    //       ),
+                    //     ),
+                    //     validator: (val) =>
+                    //         val == "None" ? "Please select the category" : null,
+                    //   ),
+                    // ),
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleChildScrollView(
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: 10,
+                            //data.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: EmbeddedTweetView.fromTweet(
+                                  Tweet.fromRawJson(jsonEncode(data[index])),
+                                ),
+                              );
+                            },
+                          ),
+                        ))
+                  ],
+                ),
               ),
       ),
     );
