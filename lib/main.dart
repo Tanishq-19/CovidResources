@@ -7,44 +7,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:twitter_api/twitter_api.dart';
 import 'package:covidresource/key.dart';
+import 'package:http/http.dart' as https;
 
 void main() => runApp(MyApp());
-//   final _twitterOauth = new twitterApi(
-//       consumerKey: consumerApiKey,
-//       consumerSecret: consumerApiSecret,
-//       token: accessToken,
-//       tokenSecret: accessTokenSecret);
-
-// // Make the request to twitter
-//   Future twitterRequest = _twitterOauth.getTwitterRequest(
-//     // Http Method
-//     "GET",
-//     // Endpoint you are trying to reach
-//     "statuses/user_timeline.json",
-//     // The options for the request
-//     options: {
-//       "user_id": "19025957",
-//       "screen_name": "TTCnotices",
-//       "count": "20",
-//       "trim_user": "true",
-//       "tweet_mode": "extended", // Used to prevent truncating tweets
-//     },
-//   );
-
-//   // Wait for the future to finish
-//   var res = await twitterRequest;
-
-//   // Print off the response
-//   print(res.statusCode);
-//   print(res.body);
-
-//   // Convert the string response into something more useable
-//   var tweets = json.decode(res.body);
-//   print(tweets);
-
-// Creating the twitterApi Object with the secret and public keys
-// These keys are generated from the twitter developer page
-// Dont share the keys with anyone
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -67,6 +32,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var page;
+
   get http => null;
 
   void initState() {
@@ -84,11 +51,13 @@ class _HomePageState extends State<HomePage> {
     //     .get(Uri.https('vedicscripturesapi.herokuapp.com', '/gita/chapters'));
     // chapters = jsonDecode(reschapters.body);
     //
-    var response = await http.post(
-      "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
-    );
-    var myData = jsonDecode(response);
-    print(myData);
+    // var response = await http.post(
+    //   "https://fathomless-taiga-09466.herokuapp.com/meerut/''/covid/7",
+    // );
+    var response = await https.get(Uri.https(
+        "fathomless-taiga-09466.herokuapp.com", "/meerut/''/covid/7"));
+    var myData = jsonDecode(response.body);
+    print(myData[0]);
     setState(() {});
   }
 
