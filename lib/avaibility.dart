@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covidresource/main.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as https;
@@ -38,7 +39,8 @@ class _AvailabilityState extends State<Availability> {
 
   fetchData(String resources) async {
     var response = await https.get(Uri.https(
-        "fathomless-taiga-09466.herokuapp.com", "/meerut/$resources/covid/50"));
+        "fathomless-taiga-09466.herokuapp.com",
+        "/${Constants.prefs.getString('setCity')} available/$resources/covid/50"));
     var myData = jsonDecode(response.body);
     data = myData;
     //print(jsonEncode(data).length);
