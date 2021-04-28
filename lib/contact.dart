@@ -10,6 +10,7 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff14213D),
       appBar: AppBar(
         title: Text("Contact Us"),
         centerTitle: true,
@@ -26,6 +27,7 @@ class _ContactPageState extends State<ContactPage> {
                   Text(
                     "For any query related to this app below are our contact accounts:",
                     textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white),
                   ),
                 ],
               ),
@@ -56,12 +58,16 @@ class _ContactPageState extends State<ContactPage> {
                             children: [
                               Text("Tanishq Chandra",
                                   style: TextStyle(
+                                    color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   )),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Text("Flutter Developer"),
+                                child: Text(
+                                  "Flutter Developer",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               )
                             ],
                           ),
@@ -139,12 +145,16 @@ class _ContactPageState extends State<ContactPage> {
                             children: [
                               Text("Shantanu Soam",
                                   style: TextStyle(
+                                    color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   )),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Text("Flutter Developer"),
+                                child: Text(
+                                  "Flutter Developer",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               )
                             ],
                           ),

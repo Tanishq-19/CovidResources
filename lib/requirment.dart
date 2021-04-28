@@ -12,6 +12,7 @@ class Requirement extends StatefulWidget {
 }
 
 class _RequirementState extends State<Requirement> {
+  var resource = '';
   final formKey = new GlobalKey<FormState>();
   // String _course;
 
@@ -21,7 +22,7 @@ class _RequirementState extends State<Requirement> {
     if (form.validate()) {
       form.save();
       setState(() {});
-      print('Done');
+
       // performLogin();
     }
   }
@@ -38,6 +39,7 @@ class _RequirementState extends State<Requirement> {
   }
 
   fetchData(String resources) async {
+    resource = resources;
     var response = await https.get(Uri.https(
         "fathomless-taiga-09466.herokuapp.com",
         "/${Constants.prefs.getString('setCity')} need/$resources/covid/50"));
@@ -371,7 +373,7 @@ class _RequirementState extends State<Requirement> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Requirements",
+                        "$resource Requirements",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
