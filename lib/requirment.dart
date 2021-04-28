@@ -42,7 +42,7 @@ class _RequirementState extends State<Requirement> {
     resource = resources;
     var response = await https.get(Uri.https(
         "fathomless-taiga-09466.herokuapp.com",
-        "/${Constants.prefs.getString('setCity')}/covid/$resources/need/sos/help/emergency/requirement/50"));
+        "/${Constants.prefs.getString('setCity')}/covid/$resources/need/sos/help/emergency/requirement/10"));
     var myData = jsonDecode(response.body);
     data = myData;
     //print(jsonEncode(data).length);
