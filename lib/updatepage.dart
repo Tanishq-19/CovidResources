@@ -1,3 +1,4 @@
+import 'package:covidresource/key.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -41,17 +42,24 @@ class _UpdatePageState extends State<UpdatePage> {
                       ),
                     ),
             ),
-            Text(
-              widget.data['feature'],
-              style: TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                widget.data['feature'],
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             Container(
-                child: widget.data['update']
+                child: widget.data['update'] && version < widget.data['version']
                     ? Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: OutlineButton(
                           onPressed: () => _launchURL(widget.data['link']),
-                          child: Text("Update"),
+                          child: Text("Update",
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
                         ),
                       )
                     : null)
