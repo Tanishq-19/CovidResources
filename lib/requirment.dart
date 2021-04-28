@@ -39,6 +39,9 @@ class _RequirementState extends State<Requirement> {
   }
 
   fetchData(String resources) async {
+    setState(() {
+      data = null;
+    });
     resource = resources;
     var response = await https.get(Uri.https(
         "fathomless-taiga-09466.herokuapp.com",
@@ -85,7 +88,7 @@ class _RequirementState extends State<Requirement> {
                     ),
                   ),
                   Text(
-                    "Select the resources and city",
+                    "Select the resources",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[200],
@@ -97,7 +100,7 @@ class _RequirementState extends State<Requirement> {
                     height: 10,
                   ),
                   Text(
-                    "Search for the requirement\nfrom the above",
+                    "Search for the requirement\nfrom the below",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[400],

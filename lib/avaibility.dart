@@ -12,6 +12,7 @@ class Availability extends StatefulWidget {
 }
 
 class _AvailabilityState extends State<Availability> {
+  var resource = '';
   final formKey = new GlobalKey<FormState>();
   // String _course;
 
@@ -38,6 +39,10 @@ class _AvailabilityState extends State<Availability> {
   }
 
   fetchData(String resources) async {
+    setState(() {
+      data = null;
+    });
+    resource = resources;
     var response = await https.get(Uri.https(
         "fathomless-taiga-09466.herokuapp.com",
         "/${Constants.prefs.getString('setCity')}/covid/$resources/resources/resource/available/verify/verified/10"));
@@ -83,7 +88,7 @@ class _AvailabilityState extends State<Availability> {
                     ),
                   ),
                   Text(
-                    "Select the resources and city",
+                    "Select the resources",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[200],
@@ -95,7 +100,7 @@ class _AvailabilityState extends State<Availability> {
                     height: 10,
                   ),
                   Text(
-                    "Search for the requirement\nfrom the above",
+                    "Search for the requirement\nfrom the below",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[400],
@@ -379,7 +384,7 @@ class _AvailabilityState extends State<Availability> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Availability",
+                        "$resource Availability",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
