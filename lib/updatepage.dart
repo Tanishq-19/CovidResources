@@ -16,6 +16,7 @@ class _UpdatePageState extends State<UpdatePage> {
       backgroundColor: Color(0xff14213D),
       appBar: AppBar(
         title: Text("Update Version: ${widget.data['version']}"),
+        backgroundColor: Color(0xff242E41),
       ),
       body: Center(
         child: Column(

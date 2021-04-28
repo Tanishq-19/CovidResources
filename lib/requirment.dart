@@ -45,7 +45,7 @@ class _RequirementState extends State<Requirement> {
     resource = resources;
     var response = await https.get(Uri.https(
         "fathomless-taiga-09466.herokuapp.com",
-        "/${Constants.prefs.getString('setCity')}/covid/$resources/need/sos/help/emergency/requirement/10"));
+        "/${Constants.prefs.getString('setCity')}/covid/$resources/need/sos/help/emergency/requirement/5"));
     var myData = jsonDecode(response.body);
     data = myData;
     //print(jsonEncode(data).length);
@@ -367,7 +367,40 @@ class _RequirementState extends State<Requirement> {
       backgroundColor: Color(0xff14213D),
       body: Center(
         child: data == null
-            ? CircularProgressIndicator()
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: CircularProgressIndicator(),
+                    ),
+                    Container(
+                      height: 200,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Laoding the resources...',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            'Restart app if loading takes more then usual time',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

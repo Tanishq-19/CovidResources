@@ -14,6 +14,7 @@ class _ContactPageState extends State<ContactPage> {
       appBar: AppBar(
         title: Text("Contact Us"),
         centerTitle: true,
+        backgroundColor: Color(0xff242E41),
       ),
       body: Center(
         child: Column(

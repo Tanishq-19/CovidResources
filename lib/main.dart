@@ -4,6 +4,7 @@ import 'package:covidresource/citysearch.dart';
 import 'package:covidresource/contact.dart';
 import 'package:covidresource/key.dart';
 import 'package:covidresource/requirment.dart';
+import 'package:covidresource/resources.dart';
 import 'package:covidresource/updatepage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -177,96 +178,122 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: data == null
-                          ? CircularProgressIndicator()
-                          : (data['update'] && version < data['version']
-                              ? Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1.0,
-                                      color: Colors.white,
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5.0) //
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: data == null
+                              ? CircularProgressIndicator()
+                              : (data['update'] && version < data['version']
+                                  ? Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1.0,
+                                          color: Colors.white,
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5.0) //
                                             ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          "Download the app with latest version",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        OutlineButton(
-                                          onPressed: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      UpdatePage(data))),
-                                          child: Text(
-                                            'Download',
-                                            style: TextStyle(
-                                              color: Colors.white,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "Download the app with latest version",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              : Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1.0,
-                                      color: Colors.white,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            5.0) //                 <--- border radius here
-                                        ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 8.0),
-                                          child: Text(
-                                            "You are using the latest version",
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
+                                            OutlineButton(
+                                              onPressed: () => Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UpdatePage(data))),
+                                              child: Text(
+                                                'Download',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        OutlineButton(
-                                          onPressed: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      UpdatePage(data))),
-                                          child: Text(
-                                            'Details',
-                                            style: TextStyle(
-                                              color: Colors.white,
+                                      ),
+                                    )
+                                  : Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1.0,
+                                          color: Colors.white,
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(
+                                                5.0) //                 <--- border radius here
                                             ),
-                                          ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Text(
+                                                "You are using the latest version",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            OutlineButton(
+                                              onPressed: () => Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UpdatePage(data))),
+                                              child: Text(
+                                                'Details',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                )),
+                                      ),
+                                    )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Disclaimer: These post could contain false info as this app is fetching independent tweets, so please be aware of it",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                     Column(
                       children: [
+                        OutlineButton(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Resources())),
+                          child: Text(
+                            "Other Resources",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                         OutlineButton(
                           onPressed: share,
                           child: Text(
