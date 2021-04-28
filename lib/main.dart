@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:covidresource/avaibility.dart';
 import 'package:covidresource/citysearch.dart';
+import 'package:covidresource/contact.dart';
 import 'package:covidresource/requirment.dart';
 import 'package:covidresource/updatepage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_share/flutter_share.dart';
 import 'package:http/http.dart' as https;
 
 void main() async {
@@ -61,6 +62,23 @@ class _HomePageState extends State<HomePage> {
     //data = jsonEncode(myData);
     print(data['update']);
     setState(() {});
+  }
+
+  Future<void> share() async {
+    await FlutterShare.share(
+      title: 'India Unites Against Covid',
+      text:
+          'This is a link to a non-profit app dedicated to provide the informational tweets for avaibility and requirements of corona resources like oxyzen, remdesivir, hospital beds, ventilators etc. in your own city. Please share this app as much as you can so that this app could reach someone needy!',
+
+      linkUrl: data['current'],
+      //chooserTitle: 'Example Chooser Title',
+    );
+
+    @override
+    // ignore: unused_element
+    void initState() {
+      super.initState();
+    }
   }
 
   @override
@@ -154,84 +172,108 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: data == null
-                    ? CircularProgressIndicator()
-                    : (data['update']
-                        ? Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(width: 1.0),
-                              borderRadius: BorderRadius.all(Radius.circular(
-                                      5.0) //                 <--- border radius here
+              Container(
+                height: MediaQuery.of(context).size.height - 200,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: data == null
+                          ? CircularProgressIndicator()
+                          : (data['update']
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(width: 1.0),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            5.0) //                 <--- border radius here
+                                        ),
                                   ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Update the app with latest version",
-                                    style: TextStyle(
-                                      fontSize: 16,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "Update the app with latest version",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        OutlineButton(
+                                          onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      UpdatePage(data))),
+                                          child: Text(
+                                            'Update',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  OutlineButton(
-                                    onPressed: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                UpdatePage(data))),
-                                    child: Text(
-                                      'Update',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                      ),
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(width: 1.0),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            5.0) //                 <--- border radius here
+                                        ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0),
+                                          child: Text(
+                                            "You are using the latest version",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                        OutlineButton(
+                                          onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      UpdatePage(data))),
+                                          child: Text(
+                                            'Details',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                          )
-                        : Container(
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.0, color: Colors.white),
-                              borderRadius: BorderRadius.all(Radius.circular(
-                                      5.0) //                 <--- border radius here
-                                  ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: Text(
-                                      "You are using the latest version",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                UpdatePage(data))),
-                                    child: Text(
-                                      'Details',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
+                                )),
+                    ),
+                    Column(
+                      children: [
+                        OutlineButton(
+                          onPressed: share,
+                          child: Text("Share this app"),
+                        ),
+                        OutlineButton(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ContactPage())),
+                          child: Text("Contact us"),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ],
           ),
