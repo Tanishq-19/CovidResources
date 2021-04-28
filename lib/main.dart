@@ -184,7 +184,10 @@ class _HomePageState extends State<HomePage> {
                           : (data['update']
                               ? Container(
                                   decoration: BoxDecoration(
-                                    border: Border.all(width: 1.0),
+                                    border: Border.all(
+                                      width: 1.0,
+                                      color: Colors.white,
+                                    ),
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(
                                             5.0) //                 <--- border radius here
@@ -198,6 +201,7 @@ class _HomePageState extends State<HomePage> {
                                           "Update the app with latest version",
                                           style: TextStyle(
                                             fontSize: 16,
+                                            color: Colors.white,
                                           ),
                                         ),
                                         OutlineButton(
@@ -209,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                                           child: Text(
                                             'Update',
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ),
@@ -219,7 +223,10 @@ class _HomePageState extends State<HomePage> {
                                 )
                               : Container(
                                   decoration: BoxDecoration(
-                                    border: Border.all(width: 1.0),
+                                    border: Border.all(
+                                      width: 1.0,
+                                      color: Colors.white,
+                                    ),
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(
                                             5.0) //                 <--- border radius here
@@ -236,6 +243,7 @@ class _HomePageState extends State<HomePage> {
                                             "You are using the latest version",
                                             style: TextStyle(
                                               fontSize: 16,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ),
@@ -248,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                           child: Text(
                                             'Details',
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ),
@@ -261,14 +269,22 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         OutlineButton(
                           onPressed: share,
-                          child: Text("Share this app"),
+                          child: Text(
+                            "Share this app",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                         OutlineButton(
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ContactPage())),
-                          child: Text("Contact us"),
+                          child: Text(
+                            "Contact us",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         )
                       ],
                     )

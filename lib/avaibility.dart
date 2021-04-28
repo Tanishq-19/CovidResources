@@ -395,7 +395,7 @@ class _AvailabilityState extends State<Availability> {
                         _buildFeedbackDialog();
                       },
                       child: Text(
-                        "Tap here",
+                        "Tap here to search",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
