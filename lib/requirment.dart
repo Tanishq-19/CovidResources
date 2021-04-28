@@ -359,7 +359,7 @@ class _RequirementState extends State<Requirement> {
 
     String dropValue1;
     return Scaffold(
-      backgroundColor: Color(0xffE8B8F4),
+      backgroundColor: Color(0xff14213D),
       body: Center(
         child: data == null
             ? CircularProgressIndicator()
@@ -374,6 +374,7 @@ class _RequirementState extends State<Requirement> {
                         "Requirements",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -389,6 +390,7 @@ class _RequirementState extends State<Requirement> {
                         "Tap here",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          color: Colors.white,
                           fontSize: 20,
                         ),
                       ),

@@ -12,6 +12,7 @@ class _UpdatePageState extends State<UpdatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff14213D),
       appBar: AppBar(
         title: Text("Update Version: ${widget.data['version']}"),
       ),
@@ -26,6 +27,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   ? Text(
                       "Update features:",
                       style: TextStyle(
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
@@ -33,12 +35,16 @@ class _UpdatePageState extends State<UpdatePage> {
                   : Text(
                       "Current features:",
                       style: TextStyle(
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
             ),
-            Text(widget.data['feature']),
+            Text(
+              widget.data['feature'],
+              style: TextStyle(color: Colors.white),
+            ),
             Container(
                 child: widget.data['update']
                     ? Padding(

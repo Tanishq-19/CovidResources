@@ -26,9 +26,6 @@ class MyApp extends StatelessWidget {
           ? CitySearch()
           : HomePage(),
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
     );
   }
 }
@@ -69,13 +66,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color(0xff14213D),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Color(0xffE8B8F4),
-        color: Color(0xffD972FF),
+        backgroundColor: Color(0xff14213D),
+        color: Color(0xff242E41),
         items: <Widget>[
-          Icon(Icons.add_moderator, size: 30),
-          Icon(Icons.enhanced_encryption, size: 30),
+          Icon(
+            Icons.add_moderator,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.enhanced_encryption,
+            size: 30,
+            color: Colors.white,
+          ),
         ],
         onTap: (index) {
           page = index;
@@ -86,14 +91,15 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("India Unites Against Covid"),
         centerTitle: true,
+        backgroundColor: Color(0xff242E41),
       ),
       drawer: Drawer(
         child: Container(
-          color: Color(0xffD972FF),
+          color: Color(0xff14213D),
           child: Column(
             children: [
               Container(
-                color: Colors.blue,
+                color: Color(0xff242E41),
                 height: 180,
                 child: Stack(
                   fit: StackFit.expand,
@@ -189,7 +195,8 @@ class _HomePageState extends State<HomePage> {
                           )
                         : Container(
                             decoration: BoxDecoration(
-                              border: Border.all(width: 1.0),
+                              border:
+                                  Border.all(width: 1.0, color: Colors.white),
                               borderRadius: BorderRadius.all(Radius.circular(
                                       5.0) //                 <--- border radius here
                                   ),
@@ -203,11 +210,12 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       "You are using the latest version",
                                       style: TextStyle(
+                                        color: Colors.white,
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  OutlineButton(
+                                  OutlinedButton(
                                     onPressed: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -216,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       'Details',
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ),

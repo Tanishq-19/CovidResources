@@ -367,7 +367,7 @@ class _AvailabilityState extends State<Availability> {
 
     String dropValue1;
     return Scaffold(
-      backgroundColor: Color(0xffE8B8F4),
+      backgroundColor: Color(0xff14213D),
       body: Center(
         child: data == null
             ? CircularProgressIndicator()
@@ -382,13 +382,14 @@ class _AvailabilityState extends State<Availability> {
                         "Availability",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
 
-                    OutlineButton(
+                    OutlinedButton(
                       autofocus: true,
                       onPressed: () {
                         _buildFeedbackDialog();
@@ -397,6 +398,7 @@ class _AvailabilityState extends State<Availability> {
                         "Tap here",
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          color: Colors.white,
                           fontSize: 20,
                         ),
                       ),
