@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:covidresource/avaibility.dart';
 import 'package:covidresource/citysearch.dart';
 import 'package:covidresource/contact.dart';
@@ -189,10 +188,9 @@ class _HomePageState extends State<HomePage> {
                                       width: 1.0,
                                       color: Colors.white,
                                     ),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            5.0) //                 <--- border radius here
-                                        ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0) //
+                                            ),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
@@ -305,7 +303,6 @@ class _HomePageState extends State<HomePage> {
 class Constants {
   static SharedPreferences prefs;
 }
-
 
 // class HomePage extends StatefulWidget {
 //   @override
