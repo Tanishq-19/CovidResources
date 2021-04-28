@@ -34,7 +34,7 @@ dependencies:
   http:
   dropdown_search:
   url_launcher: 
-  csc_picker:
+  csc_picker: ^0.2.3
   shared_preferences:
 dev_dependencies:
   flutter_test:

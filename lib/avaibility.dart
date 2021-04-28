@@ -269,7 +269,7 @@ class _AvailabilityState extends State<Availability> {
                         child: RaisedButton(
                           onPressed: () {
                             //TODO: submit feedback
-                            fetchData('beds');
+                            fetchData('bed');
                             Navigator.pop(context);
                           },
                           color: Colors.black,
@@ -440,8 +440,7 @@ class _AvailabilityState extends State<Availability> {
                           child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: 10,
-                            //data.length,
+                            itemCount: data.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
                                 padding: const EdgeInsets.all(5.0),

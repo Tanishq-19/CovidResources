@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:covidresource/avaibility.dart';
 import 'package:covidresource/citysearch.dart';
 import 'package:covidresource/requirment.dart';
+import 'package:covidresource/updatepage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     //fetchData();
+    checkUpdate();
   }
 
   // fetchData() async {
@@ -54,6 +56,15 @@ class _HomePageState extends State<HomePage> {
   //   print(data);
   //   setState(() {});
   // }
+
+  checkUpdate() async {
+    var response = await https
+        .get(Uri.https("fathomless-taiga-09466.herokuapp.com", "/update"));
+    data = jsonDecode(response.body);
+    //data = jsonEncode(myData);
+    print(data['update']);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,18 +90,142 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
         child: Container(
           color: Color(0xffD972FF),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 40.0),
-            child: Column(
-              children: [
-                Text(Constants.prefs.getString("setCity")),
-                OutlineButton(
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CitySearch())),
-                  child: Text('Change City'),
-                )
-              ],
-            ),
+          child: Column(
+            children: [
+              Container(
+                color: Colors.blue,
+                height: 180,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Container(
+                      child: Image(
+                        image: NetworkImage(
+                            "https://images.unsplash.com/45/eDLHCtzRR0yfFtU0BQar_sylwiabartyzel_themap.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1057&q=80"),
+                        fit: BoxFit.cover,
+                        color: Colors.black54,
+                        colorBlendMode: BlendMode.darken,
+                      ),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 80.0, bottom: 10.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  Constants.prefs.getString("setCity"),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            OutlineButton(
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CitySearch())),
+                              child: Text(
+                                'Change City',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: data == null
+                    ? CircularProgressIndicator()
+                    : (data['update']
+                        ? Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 1.0),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                      5.0) //                 <--- border radius here
+                                  ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Update the app with latest version",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  OutlineButton(
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                UpdatePage(data))),
+                                    child: Text(
+                                      'Update',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 1.0),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                      5.0) //                 <--- border radius here
+                                  ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Text(
+                                      "You are using the latest version",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  OutlineButton(
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                UpdatePage(data))),
+                                    child: Text(
+                                      'Details',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+              ),
+            ],
           ),
         ),
       ),
