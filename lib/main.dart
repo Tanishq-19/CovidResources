@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:covidresource/avaibility.dart';
 import 'package:covidresource/citysearch.dart';
 import 'package:covidresource/contact.dart';
+import 'package:covidresource/key.dart';
 import 'package:covidresource/requirment.dart';
 import 'package:covidresource/updatepage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -181,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: data == null
                           ? CircularProgressIndicator()
-                          : (data['update']
+                          : (data['update'] && version < data['version']
                               ? Container(
                                   decoration: BoxDecoration(
                                     border: Border.all(
@@ -198,7 +199,8 @@ class _HomePageState extends State<HomePage> {
                                     child: Column(
                                       children: [
                                         Text(
-                                          "Update the app with latest version",
+                                          "Download the app with latest version",
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.white,
@@ -211,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                                                   builder: (context) =>
                                                       UpdatePage(data))),
                                           child: Text(
-                                            'Update',
+                                            'Download',
                                             style: TextStyle(
                                               color: Colors.white,
                                             ),
